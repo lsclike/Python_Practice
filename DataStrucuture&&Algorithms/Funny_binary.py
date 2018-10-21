@@ -11,10 +11,10 @@ def binary_search(data, target, low, high):
             return binary_search(data, target, low, mid-1)
 
         else:
-            return binary_search(data, target, mid, high)
+            return binary_search(data, target, mid+1, high)
 
 
 
 if __name__ == '__main__':
-    result = binary_search([3,345,2342,234566,43214], 2342, 0, 4)
+    result = binary_search([3,345], 345, 0, 1)
     print(result)
