@@ -16,5 +16,5 @@ def binary_search(data, target, low, high):
 
 
 if __name__ == '__main__':
-    result = binary_search([3,345], 345, 0, 1)
+    result = binary_search([3, 345, 2334], 2334, 0, 2)
     print(result)
