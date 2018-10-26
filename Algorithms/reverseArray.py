@@ -1,7 +1,7 @@
 def reverseArray(a):
     leng = len(a)
     mid = leng // 2
-    for k in range(mid):
+    for k in range(leng-1, -1, -1):
         a[k], a[leng - 1 - k] = a[leng - 1 - k], a[k]
 
 
