@@ -29,8 +29,29 @@ class DynamicArray:
         self._A = B
         self._capacity = c
 
+    def pop(self):
+        if self._n > 0:
+            poped = self._A[-1]
+            self._A[-1] = None
+            self._n -= 1
+            if self._n == self._capacity//4:
+                self._resize(self._capacity//2)
+
+            return poped
+        else:
+            print("WTF")
+
     def _make_array(self, c):
         return (c * ctypes.py_object)()
+
+
+
+if __name__=='__main__':
+    test = DynamicArray()
+    result = test.pop()
+    print(result)
+    for t in test:
+        print(t, end=' ')
 
 
 

@@ -5,6 +5,6 @@ def reverse(S, start, stop):
         reverse(S, start+1, stop-1)
 
 if __name__ == '__main__':
-    test = ['a','b','c','d']
+    test = ['a','b','c','d','e']
     reverse(test, 0, len(test))
     print(test)
