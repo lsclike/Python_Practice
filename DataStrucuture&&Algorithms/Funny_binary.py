@@ -11,7 +11,7 @@ def binary_search(data, target, low, high):
             return binary_search(data, target, low, mid-1)
 
         else:
-            return binary_search(data, target, mid+1, high)
+            return binary_search(data, target, mid + 1, high)
 
 
 
