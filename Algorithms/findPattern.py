@@ -15,5 +15,3 @@ def findPattern(arr, low, high,pattern):
 
         if arr[mid] == pattern.pattern:
             pattern.time += 1
-
-        elif

@@ -1,3 +1,26 @@
+# 3 partition quick sort
+
+def quick_sort_3partition(arr, left, right):
+    if left >= right:
+        return
+    a = i = left
+    b = right
+    pivot = arr[left]
+    while i <= b:
+        if arr[i] < pivot:
+            arr[i], arr[a] = arr[a], arr[i]
+            i += 1
+            a += 1
+        elif arr[i] > pivot:
+            arr[i], arr[b] = arr[b], arr[i]
+            b -= 1
+        else:
+            i += 1
+
+    quick_sort_3partition(arr, left, a-1)
+    quick_sort_3partition(arr, b+1, right)
+
+
 # merge sort
 def merge(S1, S2, S):
     i = j = 0
@@ -47,6 +70,6 @@ def insertionSort(S):
 
 if __name__ == '__main__':
     test = [123,6,2,4,2]
-    insertionSort(test)
+    quick_sort_3partition(test, 0, 4)
     for t in test:
         print(t, end=' ')

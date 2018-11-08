@@ -16,5 +16,5 @@ class ArrayQueue:
     def first(self):
 
         if self.is_empty():
-            raise Empty('queue is empty')
+            raise Exception('queue is empty')
         return self._data[self._front]
