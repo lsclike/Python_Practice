@@ -51,16 +51,15 @@ class CircularQueue:
 
 
 if __name__ == '__main__':
-    test = 'bilibili'
-    time = 100
+    test = 'it\'s a circle '
+    time = 138
     Cqueue = CircularQueue()
     for t in test:
         Cqueue.enqueue(t)
 
-    while time > 0:
-        print(Cqueue.first(), end=' ')
-        Cqueue.rotate()
-        time -=1
+    while not Cqueue.is_empty():
+        print(Cqueue.dequeue(), end=' ')
+
 
 
 
