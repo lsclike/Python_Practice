@@ -31,11 +31,10 @@ def quick_sort(arr, lo, hi):
 
 def partitionFlag(arr, value):
     arr.sort()
-    the_index = binary_search(arr, value, 0, len(arr)-1)
-    arr[0], arr[the_index] = arr[the_index], arr[0]
     quick_sort(arr, 0, len(arr) - 1)
+    the_index = binary_search(arr, value, 0, len(arr)-1)
     for t in arr:
-        print(t, end=' ')
-
+        if t < arr[the_index]:
+            print(t, end=' ')
 if __name__ == '__main__':
-    partitionFlag([34,234,123,543,43, 6, 2, 1], 6)
+    partitionFlag([34,234,123,543,43, 6, 2, 1, -1233456], 6)
