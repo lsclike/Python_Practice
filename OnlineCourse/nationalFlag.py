@@ -30,7 +30,6 @@ def quick_sort(arr, lo, hi):
         quick_sort(arr, b+1, hi)
 
 def partitionFlag(arr, value):
-    arr.sort()
     quick_sort(arr, 0, len(arr) - 1)
     the_index = binary_search(arr, value, 0, len(arr)-1)
     for t in arr:
