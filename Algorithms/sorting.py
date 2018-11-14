@@ -57,19 +57,19 @@ def selectingSort(S):
 
 # Insertion test left move array
 def insertionSort(S):
-    for k in range(len(S) - 1, 0, -1):
+    for k in range(1, len(S)):
         cur = S[k]
         j = k
 
-        while j < len(S)-1 and S[j + 1] > cur:
-            S[j] = S[j + 1]
-            j += 1
+        while 0 < j and S[j - 1] > cur:
+            S[j] = S[j - 1]
+            j -= 1
         S[j] = cur
 
 
 
 if __name__ == '__main__':
     test = [123,6,2,4,2]
-    quick_sort_3partition(test, 0, 4)
+    insertionSort(test)
     for t in test:
         print(t, end=' ')

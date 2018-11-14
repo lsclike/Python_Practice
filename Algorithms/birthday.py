@@ -1,3 +1,4 @@
+
 def birthdayCakeCandles(ar):
     theNumber = len(ar) - 1
     times = 0
