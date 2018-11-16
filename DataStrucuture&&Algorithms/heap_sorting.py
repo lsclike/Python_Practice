@@ -13,10 +13,11 @@ def sort(unordered):
 def sink(arr, s, e):
     while 2 * s <= e:
         j = 2 * s
-        if ( j < e ) and less(arr, j, j + 1):
+        if (j < e) and less(arr, j, j + 1):
             j += 1
-        if not less(arr, s, e):
+        if not less(arr, s, j):
             break
+
         exch(arr, s, j)
         s = j
 
@@ -26,10 +27,10 @@ def exch(arr, s, e):
 
 
 def less(arr, s, e):
-    return arr[s-1] < arr[e - 1]
+    return arr[s-1] < arr[e-1]
 
 if __name__ == '__main__':
-    test = [23434, 23, 44]
+    test = [9, 8, 7, 6, 5, 4, 102, 12, 12312, 2341234213491024]
     sort(test)
     for t in test:
         print(t, end=' ')
