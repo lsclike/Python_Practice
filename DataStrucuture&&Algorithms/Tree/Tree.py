@@ -20,7 +20,7 @@ class Tree:
     def num_children(self, p):
         raise NotImplementedError('Must be implemented by subclass')
 
-    def children(self):
+    def children(self, p):
         raise NotImplementedError('Must be implemented by subclass')
 
     def __len__(self):

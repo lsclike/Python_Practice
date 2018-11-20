@@ -13,7 +13,7 @@ def factors(n):
 
 
 if __name__=='__main__':
-    for i in list(factors(25)):
+    for i in factors(25):
         print(i, end=' ')
 
 
