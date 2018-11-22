@@ -34,3 +34,23 @@ class Tree:
 
     def is_empty(self):
         return len(self) == 0
+
+    def positions(self):
+        return self.preorder()
+
+    def __iter__(self):
+        for p in self.positions():
+            yield p.element()
+
+    def _subtree_preorder(self, p):
+        yield p
+        for c in self.children(p):
+            for other in self._subtree_preorder(c):
+                yield other
+
+    def preorder(self):
+        if not self.is_empty():
+            for p in self._subtree_preorder(self.root()):
+                yield p
+
+

@@ -1,7 +1,7 @@
-from .BinaryTree import BinaryTree
+from GoodBook.Tree.BinaryTree import BinaryTree
+
 
 class LinkedBinaryTree(BinaryTree):
-
     class _Node:
         __slots__ = '_element', '_left', '_right', '_parent'
 
@@ -48,6 +48,12 @@ class LinkedBinaryTree(BinaryTree):
     def root(self):
         return self._make_position(self._root)
 
+    def is_leaf(self, p):
+        if self.num_children(p) == 0:
+            return True
+        else:
+            return False
+
     def is_empty(self):
         return self.__len__() == 0
 
@@ -62,6 +68,24 @@ class LinkedBinaryTree(BinaryTree):
     def right(self, p):
         node = self._validate(p)
         return self._make_position(node.right)
+
+    def _height(self, p):
+        if self.is_leaf(p):
+            return 0
+        else:
+            return 1 + max(self._height(c) for c in self.children(p))
+
+    def height(self):
+        return self._height(self.root())
+
+    def is_root(self, p):
+        return p is self.root()
+
+    def depth(self, p):
+        if self.is_root(p):
+            return 0
+        else:
+            return 1 + self.depth(self.parent(p))
 
     def num_children(self, p):
         node = self._validate(p)
@@ -129,7 +153,7 @@ class LinkedBinaryTree(BinaryTree):
 
     def _attach(self, p, t1, t2):
         node = self._validate(p)
-        if not self.is_leaf(node):
+        if not self.is_leaf(p):
             raise ValueError(' the node is not a leaf')
         if not type(self) is type(t1) is type(t2):
             raise ValueError('not all parameters are tree')
@@ -148,4 +172,33 @@ class LinkedBinaryTree(BinaryTree):
             node._right = tree._root
         tree._size = 0
         tree._root = None
+
+    def insert(self, e):
+        new_node = self._Node(e)
+        if self.is_empty():
+            self._add_root(e)g
+        else:
+            current = self._validate(self.root())
+            while current is not None:
+                parent_node = current
+                if current._element < new_node._element:
+                    current = current._right
+                else:
+                    current = current._left
+            if parent_node._element < new_node._element:
+                parent_node._right = new_node
+            else:
+                parent_node._left = new_node
+
+            new_node._parent = parent_node
+
+
+if __name__ == '__main__':
+    test_tree = LinkedBinaryTree()
+    for t in range(17):
+        test_tree.insert(t)
+
+    for t in test_tree.positions():
+        print(t.element())
+
 
