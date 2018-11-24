@@ -1,5 +1,5 @@
 if __name__ == '__main__':
-    test = [1,2,3,4]
+    test = [[1,2,3],2,3,4]
     result = test
 
     equal = test == result
