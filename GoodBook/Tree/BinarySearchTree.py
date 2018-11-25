@@ -38,7 +38,7 @@ class BinarySearchTree:
 
     def _put(self, node, key, value):
         if not node:
-            return self._Node(key, value, n = 1)
+            return self._Node(key, value, n=1)
         else:
             if key < node.value:
                 node.left = self._put(node.left, key, value)
@@ -48,3 +48,78 @@ class BinarySearchTree:
                 node.value = value
             node.number = self._size(node.left) + self._size(node.right) + 1
             return node
+
+    def min(self):
+        return self._min(self.root)
+
+    def _min(self, node):
+        if node.left is None:
+            return node
+        return self._min(node.left)
+
+    def max(self):
+        return self._max(self.root)
+
+    def _max(self, node):
+        if node.right is None:
+            return node
+        return self._max(self._max(node.right))
+
+    def floor(self, key):
+        result = self._floor(key, self.root)
+        if result is None:
+            return None
+        return result.key
+
+    '''modifyng the code for flooring'''
+    def _floor(self, node, key):
+        if node is None:
+            return None
+        if node.key is key:
+            return node
+        elif node.key < key:
+            if node.right is None:
+                return node
+            else:
+                return self._floor(node.right, key)
+        else:
+            return self._floor(node.left, key)
+
+    def ceiling(self, key):
+
+        result = self._ceiling(self.root, key)
+        if result is None:
+            return None
+        else:
+            return result.key
+
+    def _ceiling(self, node, key):
+        if node is None:
+            return None
+        if node.key is key:
+            return node
+        elif node.key > key:
+            return self._ceiling(node.right, key)
+        else:
+            if node.left is None:
+                return node
+            else:
+                return self._ceiling(node.left, key)
+
+    def selection(self, key):
+        return self._selection(self.root, key)
+
+    def _selection(self, node, key):
+        if not node:
+            return None
+        size = self._size(node.left)
+        if size < key:
+            return self._selection(node.right, key - size - 1)
+        elif size > key:
+            return self._selection(node.left, key)
+        else:
+            return node
+
+
+
+
