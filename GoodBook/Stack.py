@@ -34,6 +34,8 @@ class LinkedStack:
             self._element = e
             self._next = n
 
+        def __hash__(self):
+
     def __init__(self):
         self._head = None
         self._size = 0

@@ -1,7 +1,5 @@
-
-
 def factorial(n):
-    if n > 0:
+    if n > 0:2
         if n == 1:
             yield 1
         else:

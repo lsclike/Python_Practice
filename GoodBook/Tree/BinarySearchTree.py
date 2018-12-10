@@ -1,8 +1,9 @@
+from GoodBook.Tree.TreeTravel import postOrder,levelOrder
 class BinarySearchTree:
     class _Node:
         __slots__ = 'key', 'value', 'left', 'right', 'number'
 
-        def __init__(self, key, value, left, right, n):
+        def __init__(self, key, value, left=None, right=None, n=None):
             self.key = key
             self.value = value
             self.left = left
@@ -19,7 +20,7 @@ class BinarySearchTree:
         if node:
             return node.number
         else:
-            return None
+            return 0
 
     def get(self, key):
         return self._get(self.root, key)
@@ -30,19 +31,21 @@ class BinarySearchTree:
         else:
             if key < node.key:
                 return self._get(node.left, key)
-            else:
+            elif key > node.key:
                 return self._get(node.right, key)
+            else:
+                return node.value
 
     def put(self, key, value):
-        self._put(self.root, key, value)
+        self.root = self._put(self.root, key, value)
 
     def _put(self, node, key, value):
         if not node:
             return self._Node(key, value, n=1)
         else:
-            if key < node.value:
+            if key < node.key:
                 node.left = self._put(node.left, key, value)
-            elif key > node.value:
+            elif key > node.key:
                 node.right = self._put(node.right, key, value)
             else:
                 node.value = value
@@ -88,6 +91,7 @@ class BinarySearchTree:
     def ceiling(self, key):
 
         result = self._ceiling(self.root, key)
+
         if result is None:
             return None
         else:
@@ -106,20 +110,40 @@ class BinarySearchTree:
             else:
                 return self._ceiling(node.left, key)
 
-    def selection(self, key):
-        return self._selection(self.root, key)
+    def selection(self, k):
+        return self._selection(self.root, k)
 
-    def _selection(self, node, key):
+    def _selection(self, node, k):
         if not node:
             return None
         size = self._size(node.left)
-        if size < key:
-            return self._selection(node.right, key - size - 1)
-        elif size > key:
-            return self._selection(node.left, key)
+        if size < k:
+            return self._selection(node.right, k - size - 1)
+        elif size > k:
+            return self._selection(node.left, k)
         else:
             return node
 
+    def rank(self, key):
+        return self._rank(key, self.root)
+
+    def _rank(self, key, node):
+        if node is None:
+            return 0
+        if key < node.key:
+            return self._rank(key, node.left)
+        elif key > node.key:
+            return self._size(node.left) + 1 + self._rank(key, node.right)
+        else:
+            return self._size(node.left)
 
 
+if __name__ == '__main__':
+    testTree = BinarySearchTree()
+    testTree.put(50, 'first')
+    testTree.put(40, 'second')
+    testTree.put(30, 'third')
+    testTree.put(60, 'fourth')
+    testTree.put(70, 'fifth')
+    levelOrder(testTree.root)
 
