@@ -14,13 +14,15 @@ def preOrder(node):
         postOrder(node.left)
         postOrder(node.right)
 def levelOrder(node):
+    result = []
+    result.append(node)
+    while len(result) > 0:
+        poped = result.pop(0)
+        print(poped.value, end=' ')
+        if poped.left:
+            result.append(poped.left)
+        if poped.right:
+            result.append(poped.right)
 
-    if not node:
-        return
-    else:
-        result.append(node)
-        levelOrder(node.left)
-        levelOrder(node.right)
-
-for t in range(len(result)-1, -1, -1):
-    print(result[t], end=' ')
+    for t in range(len(result)-1, -1, -1):
+        print(result[t], end=' ')
