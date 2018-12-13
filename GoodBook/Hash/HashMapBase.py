@@ -14,7 +14,7 @@ class HashMapBase(MapBase):
         return ((self._scale * hash(k) + self._shift) % self._p) % len(self._table)
 
     def __len__(self):
-        return len(self._table)
+        return self._n
 
     def __getitem__(self, key):
         j = self._hash_function(key)
@@ -38,9 +38,4 @@ class HashMapBase(MapBase):
         for (k, v) in old:
             self[k] = v
 
-    def __iter__(self):
-        return
 
-if __name__ == '__main__':
-    test = HashMapBase()
-    print(test.hash_function('qw123123123seqwe'))
