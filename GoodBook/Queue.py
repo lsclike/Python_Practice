@@ -6,6 +6,7 @@ class ArrayQueue:
         self._data = [None] * ArrayQueue.DEFAULT_CAPACITY
         self._size = 0
         self._front = 0
+        self._tail = 0
 
     def __len__(self):
         return self._size
@@ -23,8 +24,10 @@ class ArrayQueue:
         if self._size == len(self._data):
             self._resize( 2 * len(self._data))
 
-        position = (self._front + self._size) % len(self._data)
-        self._data[position] = e
+        # position = (self._front + self._size) % len(self._data)
+        # self._data[position] = e
+        self._data[self._tail] = e
+        self._tail = (self._tail + 1) % len(self._data)
         self._size += 1
 
     def _resize(self, capital):
@@ -37,6 +40,7 @@ class ArrayQueue:
             first = (first + 1) % len(old)
 
         self._front = 0
+        self._tail = len(old)
 
     def dequeue(self):
         if self.empty():
@@ -92,7 +96,7 @@ class LinkedQueue:
         return result
 
 if __name__ == '__main__':
-    test= [1, 3, 4]
+    test= [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
     new = ArrayQueue()
     result = []
     for k in test:

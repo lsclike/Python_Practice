@@ -7,7 +7,7 @@ def longest_substring_without_repeating(string):
     for i in range(result_diction[length], result_diction[length] + length):
         result.append(string[i])
 
-    return ''.join(result)
+    return length
 
 
 def helper(string, start, diction):
@@ -22,5 +22,5 @@ def helper(string, start, diction):
     return None
 
 if __name__ == '__main__':
-    result_length = longest_substring_without_repeating('abcdee')
-    print(result_length);
+    result_length = longest_substring_without_repeating("abcabcbb")
+    print(result_length)
