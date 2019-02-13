@@ -54,6 +54,15 @@ def selectingSort(S):
                 mins = t
         S[k], S[mins] = S[mins], S[k]
 
+def insertion_sort(arr):
+    for c in range(1, len(arr)):
+        current = arr[c]
+        j = c
+        while j > 0 and arr[j-1] > current:
+            arr[j] = arr[j - 1]
+            j -= 1
+        arr[j] = current
+
 
 # Insertion test left move array
 def insertionSort(S):
@@ -70,6 +79,6 @@ def insertionSort(S):
 
 if __name__ == '__main__':
     test = [123,6,2,4,2]
-    insertionSort(test)
+    insertion_sort(test)
     for t in test:
         print(t, end=' ')
